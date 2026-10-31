@@ -13,7 +13,15 @@ import numpy
 # Your code here:
 # -----------------------------------------------
 
-def step
+def step(x):
+    try:
+        x = float(x)
+    except (ValueError, TypeError):
+        raise ValueError("Input must be numeric")
+    if x > 0:
+        return 1
+    else:
+        return -1
 
 
 # -----------------------------------------------
@@ -28,9 +36,14 @@ def step
 
 # Your code here:
 # -----------------------------------------------
-def ReLu
+def ReLu(arr, cutoff = 0):
+    arr = arr.copy()  # make a copy of arr to avoid modifying the original array
+    for i in range(len(arr)):
+        if arr[i] < cutoff:
+            arr[i] = cutoff
+    return arr
 
-
+#   arr[arr < cutoff] = cutoff also works (True = cutoff value, False = original value)
 # -----------------------------------------------
 
 
@@ -44,7 +57,17 @@ def ReLu
 # Your code here:
 # -----------------------------------------------
 
-def neural_net_layer
+def neural_net_layer(td_arr, od_arr):
+  if td_arr.shape[1] != len(od_arr):
+     raise ValueError("Number of columns must match length of the 1D array")
+  x = np.dot(td_arr, od_arr)
+  return ReLu(x)
 
+
+
+# shape[0] = number of rows, shape[1] = number of columns of array
+# np.dot(A, B) (or A @ B) = matrix multiplication
+# Matrix multiplication: columns of 1st matrix = rows of 2nd matrix.
+# A 1D array has no rows/columns, so its length just has to match the columns.
 
 # ------------------------------------------
