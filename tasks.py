@@ -23,7 +23,7 @@ def step(x):
     else:
         return -1
 
-
+print(step(3))
 # -----------------------------------------------
 
 
@@ -42,6 +42,7 @@ def ReLu(arr, cutoff = 0):
         if arr[i] < cutoff:
             arr[i] = cutoff
     return arr
+
 
 #   arr[arr < cutoff] = cutoff also works (True = cutoff value, False = original value)
 # -----------------------------------------------
@@ -62,7 +63,6 @@ def neural_net_layer(td_arr, od_arr):
      raise ValueError("Number of columns must match length of the 1D array")
   x = np.dot(td_arr, od_arr)
   return ReLu(x)
-
 
 
 # shape[0] = number of rows, shape[1] = number of columns of array
